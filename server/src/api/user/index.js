@@ -52,7 +52,7 @@ router.get('/:id',
  * @api {post} /users Create user
  * @apiName CreateUser
  * @apiGroup User
- * @apiPermission master
+ * @apiPermission all users
  * @apiParam {String} access_token Master access_token.
  * @apiParam {String} email User's email.
  * @apiParam {String{6..}} password User's password.
@@ -65,9 +65,8 @@ router.get('/:id',
  * @apiError 409 Email already registered.
  */
 router.post('/',
-  master(),
   body({ email, password, name, picture, role }),
-  create)
+  create);
 
 /**
  * @api {put} /users/:id Update user
@@ -85,7 +84,7 @@ router.post('/',
 router.put('/:id',
   token({ required: true }),
   body({ name, picture }),
-  update)
+  update);
 
 /**
  * @api {put} /users/:id/password Update password
@@ -101,7 +100,7 @@ router.put('/:id',
 router.put('/:id/password',
   passwordAuth(),
   body({ password }),
-  updatePassword)
+  updatePassword);
 
 /**
  * @api {delete} /users/:id Delete user
@@ -115,6 +114,6 @@ router.put('/:id/password',
  */
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
-  destroy)
+  destroy);
 
 export default router
