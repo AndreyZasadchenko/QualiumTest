@@ -1,0 +1,37 @@
+header {
+  margin-top: 15px;
+}
+
+h5 {
+  float: left;
+}
+
+.logout, h6 {
+  float: right;
+}
+
+h6 {
+  line-height: 170% !important;
+  margin-right: 15px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+li.done {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.22) !important;
+}
+
+li.done::after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  content: "";
+  width: 90%;
+  display: block;
+}

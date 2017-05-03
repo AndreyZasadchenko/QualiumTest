@@ -1,0 +1,23 @@
+<section class="todoapp">
+  <header class="header">
+    <h5>TASKS</h5>
+    <a class="waves-effect waves-light btn logout" (click)="logout()"><i class="material-icons right">power_settings_new</i>LOGOUT</a>
+    <h6>{{email}}</h6>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+  </header>
+  <section class="main" *ngIf="todos.length > 0">
+    <ul class="todo-list collection">
+      <li *ngFor="let todo of todos; let i = index" [class.completed]="todo.complete" [class.done]="todo.complete" class="collection-item">
+        <div class="view">
+          <input [id]="'task' + i" class="toggle filled-in" type="checkbox" (click)="toggleTodoComplete(todo, i)" [checked]="todo.complete" [disabled]="todo.complete">
+          <label [for]="'task' + i">{{todo.title}}</label>
+          <i class="close material-icons" (click)="removeTodo(todo.id, i)">close</i>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer" *ngIf="todos.length > 0">
+    <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+  </footer>
+</section>
+

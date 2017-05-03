@@ -1,0 +1,25 @@
+<div class="login jumbotron center-block">
+  <h3>Simple ToDo</h3>
+  <form #Form="ngForm" role="form" (submit)="signup($event, email.value, password.value)">
+    <div class="form-group">
+      <label for="email">Username</label>
+      <input [(ngModel)]="email.value" type="email" #email class="form-control" id="email" email name="email" placeholder="Email" required minlength="1">
+      <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+        <div [hidden]="!email.errors.required">
+          Email is required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input [(ngModel)]="password.value" type="password" #password class="form-control" id="password" name="password" placeholder="Password" required minlength="1">
+      <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+        <div [hidden]="!password.errors.required">
+          Password is required
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!Form.form.valid">SIGNUP</button>
+  </form>
+  <button [routerLink]="['/login']" class="btn-flat">Already have an account?</button>
+</div>
