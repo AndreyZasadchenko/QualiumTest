@@ -19,12 +19,11 @@ beforeEach(async () => {
 test('POST /todos 201 (user)', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, descrpition: 'test', done: 'test', date: 'test' })
+    .send({ access_token: userSession, title: 'test', complete: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.descrpition).toEqual('test')
-  expect(body.done).toEqual('test')
-  expect(body.date).toEqual('test')
+  expect(body.title).toEqual('test')
+  expect(body.complete).toEqual('test')
   expect(typeof body.user).toEqual('object')
 })
 
@@ -75,20 +74,19 @@ test('GET /todos/:id 404 (user)', async () => {
 test('PUT /todos/:id 200 (user)', async () => {
   const { status, body } = await request(app())
     .put(`/${todo.id}`)
-    .send({ access_token: userSession, descrpition: 'test', done: 'test', date: 'test' })
+    .send({ access_token: userSession, title: 'test', complete: 'test' })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(todo.id)
-  expect(body.descrpition).toEqual('test')
-  expect(body.done).toEqual('test')
-  expect(body.date).toEqual('test')
+  expect(body.title).toEqual('test')
+  expect(body.complete).toEqual('test')
   expect(typeof body.user).toEqual('object')
 })
 
 test('PUT /todos/:id 401 (user) - another user', async () => {
   const { status } = await request(app())
     .put(`/${todo.id}`)
-    .send({ access_token: anotherSession, descrpition: 'test', done: 'test', date: 'test' })
+    .send({ access_token: anotherSession, title: 'test', complete: 'test' })
   expect(status).toBe(401)
 })
 
@@ -101,7 +99,7 @@ test('PUT /todos/:id 401', async () => {
 test('PUT /todos/:id 404 (user)', async () => {
   const { status } = await request(app())
     .put('/123456789098765432123456')
-    .send({ access_token: anotherSession, descrpition: 'test', done: 'test', date: 'test' })
+    .send({ access_token: anotherSession, title: 'test', complete: 'test' })
   expect(status).toBe(404)
 })
 

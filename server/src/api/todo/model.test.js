@@ -5,7 +5,7 @@ let user, todo
 
 beforeEach(async () => {
   user = await User.create({ email: 'a@a.com', password: '123456' })
-  todo = await Todo.create({ user, descrpition: 'test', done: 'test', date: 'test' })
+  todo = await Todo.create({ user, title: 'test', complete: 'test' })
 })
 
 describe('view', () => {
@@ -15,9 +15,8 @@ describe('view', () => {
     expect(view.id).toBe(todo.id)
     expect(typeof view.user).toBe('object')
     expect(view.user.id).toBe(user.id)
-    expect(view.descrpition).toBe(todo.descrpition)
-    expect(view.done).toBe(todo.done)
-    expect(view.date).toBe(todo.date)
+    expect(view.title).toBe(todo.title)
+    expect(view.complete).toBe(todo.complete)
     expect(view.createdAt).toBeTruthy()
     expect(view.updatedAt).toBeTruthy()
   })
@@ -28,9 +27,8 @@ describe('view', () => {
     expect(view.id).toBe(todo.id)
     expect(typeof view.user).toBe('object')
     expect(view.user.id).toBe(user.id)
-    expect(view.descrpition).toBe(todo.descrpition)
-    expect(view.done).toBe(todo.done)
-    expect(view.date).toBe(todo.date)
+    expect(view.title).toBe(todo.title)
+    expect(view.complete).toBe(todo.complete)
     expect(view.createdAt).toBeTruthy()
     expect(view.updatedAt).toBeTruthy()
   })

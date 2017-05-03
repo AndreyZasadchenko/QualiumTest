@@ -6,11 +6,11 @@ const todoSchema = new Schema({
     ref: 'User',
     required: true
   },
-  descrpition: {
+  title: {
     type: String
   },
-  done: {
-    type: String
+  complete: {
+    type: Boolean
   }
 }, {
   timestamps: true
@@ -22,9 +22,8 @@ todoSchema.methods = {
       // simple view
       id: this.id,
       user: this.user.view(full),
-      descrpition: this.descrpition,
-      done: this.done,
-      date: this.date,
+      title: this.title,
+      complete: this.complete,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

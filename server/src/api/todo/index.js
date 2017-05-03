@@ -7,7 +7,7 @@ import { schema } from './model'
 export Todo, { schema } from './model'
 
 const router = new Router()
-const { descrpition, done, date } = schema.tree
+const { title, complete } = schema.tree
 
 /**
  * @api {post} /todos Create todo
@@ -15,9 +15,8 @@ const { descrpition, done, date } = schema.tree
  * @apiGroup Todo
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam descrpition Todo's descrpition.
- * @apiParam done Todo's done.
- * @apiParam date Todo's date.
+ * @apiParam title Todo's title.
+ * @apiParam complete Todo's complete.
  * @apiSuccess {Object} todo Todo's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Todo not found.
@@ -25,7 +24,7 @@ const { descrpition, done, date } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ descrpition, done, date }),
+  body({ title, complete }),
   create)
 
 /**
@@ -65,9 +64,8 @@ router.get('/:id',
  * @apiGroup Todo
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam descrpition Todo's descrpition.
- * @apiParam done Todo's done.
- * @apiParam date Todo's date.
+ * @apiParam title Todo's title.
+ * @apiParam complete Todo's complete.
  * @apiSuccess {Object} todo Todo's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Todo not found.
@@ -75,7 +73,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ descrpition, done, date }),
+  body({ title, complete }),
   update)
 
 /**
