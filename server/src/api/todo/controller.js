@@ -6,14 +6,14 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
   Todo.create({ ...body, user })
     .then((todo) => todo.view(true))
     .then(success(res, 201))
-    .catch(next)
+    .catch(next);
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  Todo.find(query, select, cursor)
+export const index = ({ user, querymen: { query, select, cursor } }, res, next) =>
+  Todo.find({ user: user._id, ...query }, select, cursor)
     .populate('user')
     .then((todos) => todos.map((todo) => todo.view()))
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const show = ({ params }, res, next) =>
   Todo.findById(params.id)
@@ -21,7 +21,7 @@ export const show = ({ params }, res, next) =>
     .then(notFound(res))
     .then((todo) => todo ? todo.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Todo.findById(params.id)
@@ -31,7 +31,7 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .then((todo) => todo ? _.merge(todo, body).save() : null)
     .then((todo) => todo ? todo.view(true) : null)
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const destroy = ({ user, params }, res, next) =>
   Todo.findById(params.id)
@@ -39,4 +39,4 @@ export const destroy = ({ user, params }, res, next) =>
     .then(authorOrAdmin(res, user, 'user'))
     .then((todo) => todo ? todo.remove() : null)
     .then(success(res, 204))
-    .catch(next)
+    .catch(next);
