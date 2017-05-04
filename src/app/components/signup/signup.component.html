@@ -19,6 +19,11 @@
         </div>
       </div>
     </div>
+    <div *ngIf="error" class="alert alert-danger">
+      <label [hidden]="!error">
+        {{error}}
+      </label>
+    </div>
     <button type="submit" class="btn btn-default" [disabled]="!Form.form.valid">SIGNUP</button>
   </form>
   <button [routerLink]="['/login']" class="btn-flat">Already have an account?</button>

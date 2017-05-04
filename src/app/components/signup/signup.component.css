@@ -29,3 +29,13 @@ h3 {
   height: 350px;
   padding: 0 30% 0 30%;
 }
+
+.alert-danger {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.alert-danger label {
+  color: #F44336 !important;
+}
+
